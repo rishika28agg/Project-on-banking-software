@@ -1,0 +1,232 @@
+package banking.system;
+
+import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+public class loan extends JFrame implements ActionListener {
+    
+    JTextField textfname, textlname, textphone;
+    JTextField textadd, textcity, textpin, textstate;
+    JDateChooser dateChooser;
+    JComboBox comboBox, comboBox1, comboBox2;
+    JButton next;
+    Random ran = new Random();
+    long first4 = (ran.nextLong() % 9000L) + 1000L;
+    String first = " " + Math.abs(first4);
+    loan(String pin){
+        super("APPLICATION FORM");
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank4.jpeg"));
+        Image i2 = i1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(50, 15, 100, 100);
+        add(image);
+        
+        JLabel label1 = new JLabel("RK PUBLIC BANK");
+        label1.setFont(new Font("AvantGarde", Font.BOLD, 20));
+        label1.setBounds(20, 115, 300, 40);
+        add(label1);
+        
+        JLabel label2 = new JLabel(" LOAN APPLICATION FORM NO. " + first);
+        label2.setBounds(230, 25, 600, 40);
+        label2.setFont(new Font("Raleway", Font.BOLD, 30));
+        add(label2);
+        
+        JLabel label3 = new JLabel("PERSONAL DETAILS");
+        label3.setBounds(320, 100, 400, 25);
+        label3.setFont(new Font("Raleway", Font.BOLD, 30));
+        add(label3);
+        
+        JLabel fname = new JLabel("First Name");
+        fname.setBounds(100, 190, 200, 30);
+        fname.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(fname);
+        
+        textfname = new JTextField();
+        textfname.setBounds(280, 190, 400, 30);
+        textfname.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(textfname);
+        
+        JLabel lname = new JLabel("Last Name");
+        lname.setBounds(100, 230, 200, 30);
+        lname.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(lname);
+        
+        textlname = new JTextField();
+        textlname.setBounds(280, 230, 400, 30);
+        textlname.setFont(new Font("Raleway", Font.BOLD, 14));
+        add(textlname);
+        
+        JLabel DOB = new JLabel("Date Of Birth");
+        DOB.setBounds(100, 270, 200, 30);
+        DOB.setFont(new Font("Raleway", Font.BOLD, 20));
+        add(DOB);
+        
+        dateChooser = new JDateChooser();
+        dateChooser.setForeground(Color.LIGHT_GRAY);
+        dateChooser.setBounds(280, 270, 400, 30);
+        add(dateChooser);
+        
+        JLabel labelphone = new JLabel("Contact Number");
+        labelphone.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelphone.setBounds(100, 310, 200, 30);
+        add(labelphone);
+        
+        textphone = new JTextField();
+        textphone.setFont(new Font("Raleway", Font.BOLD, 14));
+        textphone.setBounds(280, 310, 400, 30);
+        add(textphone);
+        
+        JLabel labeladd = new JLabel("Address");
+        labeladd.setFont(new Font("Raleway", Font.BOLD, 20));
+        labeladd.setBounds(100, 350, 200, 30);
+        add(labeladd);
+        
+        textadd = new JTextField();
+        textadd.setFont(new Font("Raleway", Font.BOLD, 14));
+        textadd.setBounds(280, 350, 400, 30);
+        add(textadd);
+        
+        JLabel labelcity = new JLabel("City");
+        labelcity.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelcity.setBounds(100, 390, 200, 30);
+        add(labelcity);
+        
+        textcity = new JTextField();
+        textcity.setFont(new Font("Raleway", Font.BOLD, 14));
+        textcity.setBounds(280, 390, 400, 30);
+        add(textcity);
+        
+        JLabel labelpin = new JLabel("Pin-code");
+        labelpin.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelpin.setBounds(100, 430, 200, 30);
+        add(labelpin);
+        
+        textpin = new JTextField();
+        textpin.setFont(new Font("Raleway", Font.BOLD, 14));
+        textpin.setBounds(280, 430, 400, 30);
+        add(textpin);
+        
+        JLabel labelstate = new JLabel("State");
+        labelstate.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelstate.setBounds(100, 470, 200, 30);
+        add(labelstate);
+        
+        textstate = new JTextField();
+        textstate.setFont(new Font("Raleway", Font.BOLD, 14));
+        textstate.setBounds(280, 470, 400, 30);
+        add(textstate);
+        
+        JLabel labelocu = new JLabel("Occupation");
+        labelocu.setFont(new Font("Raleway", Font.BOLD, 20));
+        labelocu.setBounds(100,510,200,30);
+        add(labelocu);
+
+        String Occupation [] = {"Salaried","Self-Employed","Business","Student","Retired","Other"};
+        comboBox = new JComboBox(Occupation);
+        comboBox.setBackground(Color.WHITE);
+        comboBox.setFont(new Font("Raleway",Font.BOLD,14));
+        comboBox.setBounds(280,510,400,30);
+        add(comboBox);
+        
+        JLabel labelinc = new JLabel("Annual Income");
+        labelinc.setFont(new Font("Raleway", Font.BOLD,20));
+        labelinc.setBounds(100,550,200,30);
+        add(labelinc);
+
+        String income [] = {"Null","<1,50,000","<2,50,000","5,00,000","Upto 10,00,000","Above 10,00,000"};
+        comboBox1 = new JComboBox(income);
+        comboBox1.setBackground(Color.WHITE);
+        comboBox1.setFont(new Font("Raleway",Font.BOLD,14));
+        comboBox1.setBounds(280,550,400,30);
+        add(comboBox1);
+        
+        JLabel labeltype = new JLabel("Loan Type");
+        labeltype.setFont(new Font("Raleway", Font.BOLD, 20));
+        labeltype.setBounds(100, 590, 200, 30);
+        add(labeltype);
+        
+        String loantype[] = {"Vehicle Loan","Home Loan","Personal Loan"};
+        comboBox2 = new JComboBox(loantype);
+        comboBox2.setBackground(Color.WHITE);
+        comboBox2.setFont(new Font("Raleway",Font.BOLD,14));
+        comboBox2.setBounds(280,590,400,30);
+        add(comboBox2);
+        
+        next = new JButton("NEXT");
+        next.setFont(new Font("Raleway", Font.BOLD, 15));
+        next.setBackground(Color.BLUE);
+        next.setForeground(Color.WHITE);
+        next.setBounds(400, 640, 80, 30);
+        next.addActionListener(this);
+        add(next);
+        
+        getContentPane().setBackground(Color.WHITE);
+        setLayout(null);
+        setSize(850, 750);
+        setLocation(360, 40);
+        setVisible(true);
+    }
+    
+    public static void main(String[] args){
+        new loan("");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String formno = first;
+        String fname = textfname.getText();
+        String lname = textlname.getText();
+        var dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String address = textadd.getText();
+        String city = textcity.getText();
+        String pincode = textpin.getText();
+        String state = textstate.getText();
+        String occ = (String) comboBox.getSelectedItem();
+        String inc = (String) comboBox1.getSelectedItem();
+        String type = (String) comboBox2.getSelectedItem();
+        String v = "Vehicle Loan";
+        String h = "Home Loan";
+        String p = "Personal Loan";
+        try{
+            if(textfname.getText().equals("") || textadd.getText().equals("") || textpin.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Fill all the details");
+            }
+            else
+            {
+                Connn c = new Connn();
+                String q = "insert into enquiry values('"+formno+"','"+fname+"','"+lname+"','"+dob+"','"+address+"','"+city+"','"+pincode+"','"+state+"','"+occ+"','"+inc+"','"+type+"')";
+                c.statement.executeUpdate(q);
+                java.sql.ResultSet resultSet = c.statement.executeQuery("select * from enquiry where loantype = '"+type+"'");
+                while(resultSet.next()){
+                    if(resultSet.getString("loantype").equals(v)){
+                        new loan2(first);
+                        setVisible(false);
+                    }else if(resultSet.getString("loantype").equals(h)){
+                        new loan3(first);
+                        setVisible(false);
+                    }else if(resultSet.getString("loantype").equals(p)){
+                        new loan4(first);
+                        setVisible(false);
+                    }
+                }   
+            }
+        }catch(Exception E){
+            E.printStackTrace();
+    }
+    }
+}
