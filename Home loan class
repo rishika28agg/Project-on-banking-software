@@ -1,0 +1,195 @@
+package banking.system;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+public class loan3 extends JFrame implements ActionListener {
+
+    String pin, formno;
+    JTextField field1, field2, field3;
+    JRadioButton r1, r2;
+    JButton b1, b2;
+    loan3(String first) {
+        
+        this.pin = pin;
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank4.jpeg"));
+        Image i2 = i1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(50, 15, 100, 100);
+        add(image);
+        
+        JLabel label1 = new JLabel("RK PUBLIC BANK");
+        label1.setFont(new Font("AvantGarde", Font.BOLD, 20));
+        label1.setBounds(20, 115, 300, 40);
+        add(label1);
+        
+        this.formno = formno;
+        
+        JLabel l1 = new JLabel("Form No : ");
+        l1.setFont(new Font("Raleway", Font.BOLD,14));
+        l1.setBounds(650,10,100,30);
+        add(l1);
+
+        JLabel l2 = new JLabel(formno);
+        l2.setFont(new Font("Raleway", Font.BOLD,14));
+        l2.setBounds(700,10,60,30);
+        add(l2);
+        
+        JLabel l3 = new JLabel("HOME LOAN APPLICATION");
+        l3.setFont(new Font("Raleway",Font.BOLD,25));
+        l3.setBounds(320,50,400,40);
+        add(l3);
+        
+        JLabel l4 = new JLabel("Loan Requirement");
+        l4.setFont(new Font("Raleway", Font.BOLD, 20));
+        l4.setBounds(100,160,200,30);
+        add(l4);
+        
+        field1 = new JTextField();
+        field1.setFont(new Font("Raleway", Font.BOLD, 16));
+        field1.setBounds(100, 200, 400, 30);
+        field1.addActionListener(this);
+        add(field1);
+        
+        JLabel note = new JLabel("*Minimum loan amount is Rs.50,000");
+        note.setFont(new Font("Raleway", Font.BOLD, 16));
+        note.setBounds(100, 230, 400, 30);
+        add(note);
+        
+        JLabel l5 = new JLabel("Fixed Rate of Interest:");
+        l5.setFont(new Font("Raleway", Font.BOLD, 20));
+        l5.setBounds(100, 270, 400, 30);
+        add(l5);
+        
+        r1 = new JRadioButton("Home loan: 8% per annum");
+        r1.setFont(new Font("Raleway",Font.BOLD,16));
+        r1.setBackground(Color.WHITE);
+        r1.setBounds(100,310,400,30);
+        r1.addActionListener(this);
+        add(r1);
+
+        r2 = new JRadioButton("Maintenance loan: 5% per annum");
+        r2.setFont(new Font("Raleway",Font.BOLD,16));
+        r2.setBackground(Color.WHITE);
+        r2.setBounds(100,350,400,30);
+        r2.addActionListener(this);
+        add(r2);
+
+        ButtonGroup buttonGroup2 = new ButtonGroup();
+        buttonGroup2.add(r1);
+        buttonGroup2.add(r2);
+        
+        JLabel l6 = new JLabel("Duration of Repayment");
+        l6.setFont(new Font("Raleway", Font.BOLD, 20));
+        l6.setBounds(100, 390, 400, 30);
+        add(l6);
+        
+        field2 = new JTextField();
+        field2.setFont(new Font("Raleway",Font.BOLD,16));
+        field2.setBounds(100,430,400,30);
+        field2.addActionListener(this);
+        add(field2);
+        
+        JLabel note2 = new JLabel("*Maximum duration will be 300 months");
+        note2.setFont(new Font("Raleway", Font.BOLD, 16));
+        note2.setBounds(100, 460, 400, 30);
+        add(note2);
+        
+        JLabel l7 = new JLabel("Monthly EMI");
+        l7.setFont(new Font("Raleway", Font.BOLD, 20));
+        l7.setBounds(100, 500, 400, 30);
+        add(l7);
+        
+        field3 = new JTextField();
+        field3.setFont(new Font("Raleway", Font.BOLD, 16));
+        field3.setBounds(100, 540, 400, 30);
+        add(field3);
+        
+        b1 = new JButton("SUBMIT");
+        b1.setFont(new Font("Raleway", Font.BOLD,14));
+        b1.setBackground(Color.BLACK);
+        b1.setForeground(Color.WHITE);
+        b1.setBounds(270,620,100,30);
+        b1.addActionListener(this);
+        add(b1);
+
+        b2 = new JButton("CANCEL");
+        b2.setFont(new Font("Raleway", Font.BOLD,14));
+        b2.setBackground(Color.BLACK);
+        b2.setForeground(Color.WHITE);
+        b2.setBounds(440,620,100,30);
+        b2.addActionListener(this);
+        add(b2);
+        
+        getContentPane().setBackground(Color.WHITE);
+        setLayout(null);
+        setSize(850, 750);
+        setLocation(360, 40);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String req = field1.getText();
+        String rot = " ";
+        if(r1.isSelected()){
+            rot = "8% per annum";
+        }else if(r2.isSelected()){
+            rot = "5% per annum";
+        }
+        String dur = field2.getText();
+        String emi = field3.getText();
+        try{
+            if(e.getSource() == field1 || e.getSource() == r1 || e.getSource() == r2 || e.getSource() == field2){
+                double loanAmount = Double.parseDouble(field1.getText());
+                double interestRate = 0.0;
+                if(r1.isSelected()){
+                    interestRate = 8.0;
+                }else if(r2.isSelected()){
+                    interestRate = 5.0;
+                }
+                double monthlyRate = interestRate/100/12;
+                int loanTerm = Integer.parseInt(((String) field2.getText()).split(" ")[0]);
+                double cemi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / (Math.pow(1 + monthlyRate, loanTerm) - 1);
+                field3.setText(String.format("%.2f", cemi));
+            }
+        }catch(NumberFormatException ex){
+            field3.setText("");
+        }
+        try {
+            if (e.getSource()==b1){
+                if (field1.getText().equals("") || rot.equals("") || field2.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,"Fill all the fields");
+                }else {
+                    Connn c = new Connn();
+                    String q1 = "insert into loan3 values('"+formno+"','"+req+"','"+rot+"','"+dur+"','"+emi+"')";
+                    c.statement.executeUpdate(q1);
+                    JOptionPane.showMessageDialog(null,"Your application has been submitted successfully" );
+                    setVisible(false);
+                    new main_Class(pin);
+                }
+            } else if (e.getSource()==b2) {
+                System.exit(0);
+            }
+
+        }catch (Exception E){
+            E.printStackTrace();
+        }
+    }
+    public static void main(String[] args){
+        new loan3("");
+    }
+}
